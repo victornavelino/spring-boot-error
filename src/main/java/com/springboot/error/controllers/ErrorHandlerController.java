@@ -9,14 +9,24 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class ErrorHandlerController {
-	
+
 	@ExceptionHandler(ArithmeticException.class)
 	public String aritmeticaError(ArithmeticException ex, Model model) {
-		model.addAttribute("error","Error de Aritmetica");
-		model.addAttribute("message",ex.getMessage());
-		model.addAttribute("status",HttpStatus.INTERNAL_SERVER_ERROR.value());
-		model.addAttribute("timestamp",new Date());
+		model.addAttribute("error", "Error de Aritmetica");
+		model.addAttribute("message", ex.getMessage());
+		model.addAttribute("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
+		model.addAttribute("timestamp", new Date());
 		return "error/aritmetica";
+	}
+
+	@ExceptionHandler(NumberFormatException.class)
+	public String formatoNumeroError(NumberFormatException ex, Model model) {
+		model.addAttribute("error", "Formato numero invalido");
+		model.addAttribute("message", ex.getMessage());
+		model.addAttribute("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
+		model.addAttribute("timestamp", new Date());
+		return "error/numero-formato";
+
 	}
 
 }
