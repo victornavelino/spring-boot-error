@@ -11,25 +11,30 @@ import com.springboot.error.modelos.Usuario;
 public class UsuarioServiceImpl implements UsuarioService {
 
 	private List<Usuario> lista;
-	
-	
-	
+
 	public UsuarioServiceImpl() {
 		this.lista = new ArrayList<>();
 		this.lista.add(new Usuario(1, "Elian", "Navelino"));
 		this.lista.add(new Usuario(2, "Emi", "Navelino"));
+		this.lista.add(new Usuario(3, "Huguito", "Navelino"));
 	}
 
 	@Override
 	public List<Usuario> listar() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.lista;
 	}
 
 	@Override
 	public Usuario obtenerPorId(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		Usuario usuario = null;
+		for (Usuario user : this.lista) {
+			if (user.getId().equals(id)) {
+				usuario = user;
+				break;
+			}
+
+		}
+		return usuario;
 	}
 
 }
